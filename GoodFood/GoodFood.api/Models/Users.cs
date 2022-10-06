@@ -2,22 +2,33 @@
 {
     public class Users
     {
-        public string UserName
+        public string saler_Id
         {
             get;
             set;
         }
-        public Guid Id
+        public string Name
         {
             get;
             set;
         }
-        public string EmailId
+      
+        public string address
         {
             get;
             set;
         }
-        public string Password
+        public string user_name
+        {
+            get;
+            set;
+        }
+        public string password
+        {
+            get;
+            set;
+        }
+        public string token
         {
             get;
             set;

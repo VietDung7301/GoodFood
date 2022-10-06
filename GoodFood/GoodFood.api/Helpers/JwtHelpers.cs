@@ -12,7 +12,6 @@ namespace GoodFood.api.Helpers
             IEnumerable<Claim> claims = new Claim[] {
                 new Claim("Id", userAccounts.Id.ToString()),
                     new Claim(ClaimTypes.Name, userAccounts.UserName),
-                    new Claim(ClaimTypes.Email, userAccounts.EmailId),
                     new Claim(ClaimTypes.NameIdentifier, Id.ToString()),
                     new Claim(ClaimTypes.Expiration, DateTime.UtcNow.AddDays(1).ToString("MMM ddd dd yyyy HH:mm:ss tt"))
             };
@@ -38,7 +37,7 @@ namespace GoodFood.api.Helpers
                 UserToken.Token = new JwtSecurityTokenHandler().WriteToken(JWToken);
                 UserToken.UserName = model.UserName;
                 UserToken.Id = model.Id;
-                UserToken.GuidId = Id;
+                UserToken.SalerName=model.SalerName;
                 return UserToken;
             }
             catch (Exception)

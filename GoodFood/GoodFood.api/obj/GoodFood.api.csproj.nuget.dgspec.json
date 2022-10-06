@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj": {}
+    "E:\\Games\\Goodfood\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj": {}
   },
   "projects": {
-    "E:\\Project\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj": {
+    "E:\\Games\\Goodfood\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj",
+        "projectUniqueName": "E:\\Games\\Goodfood\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj",
         "projectName": "GoodFood.api",
-        "projectPath": "E:\\Project\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj",
-        "packagesPath": "C:\\Users\\hvd70\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\GoodFood\\GoodFood\\GoodFood.api\\obj\\",
+        "projectPath": "E:\\Games\\Goodfood\\GoodFood\\GoodFood\\GoodFood.api\\GoodFood.api.csproj",
+        "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+        "outputPath": "E:\\Games\\Goodfood\\GoodFood\\GoodFood\\GoodFood.api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hvd70\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

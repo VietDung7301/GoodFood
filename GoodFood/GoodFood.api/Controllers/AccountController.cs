@@ -1,8 +1,13 @@
-﻿using GoodFood.api.Helpers;
+﻿using Dapper;
+using GoodFood.api.Controllers;
+using GoodFood.api.Helpers;
 using GoodFood.api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MySqlConnector;
+using System;
+
 namespace WebApplication.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -14,44 +19,38 @@ namespace WebApplication.Controllers
         {
             this.jwtSettings = jwtSettings;
         }
-        private IEnumerable<Users> logins = new List<Users>() {
-            new Users() {
-                    Id = Guid.NewGuid(),
-                        EmailId = "adminakp@gmail.com",
-                        UserName = "Admin",
-                        Password = "Admin",
-                },
-                new Users() {
-                    Id = Guid.NewGuid(),
-                        EmailId = "adminakp@gmail.com",
-                        UserName = "User1",
-                        Password = "Admin",
-                }
-        };
+
+
+
         [HttpPost]
-        public IActionResult GetToken(UserLogins userLogins)
+        public IActionResult Login(UserLogins userLogins)
         {
             try
             {
+                string connectionString = "Server=localhost;Port=3306;Database=goodfood;Uid=root;Pwd=yasuo1234gg";
+                var mySQLconnection = new MySqlConnection(connectionString);
+                string getAllUser = "Select * from salers";
+                IEnumerable<Users> logins = mySQLconnection.Query<Users>(getAllUser);
+
                 var Token = new UserTokens();
-                var Valid = logins.Any(x => 
-                    x.UserName.Equals(userLogins.UserName, StringComparison.Ordinal) 
-                    && x.Password.Equals(userLogins.Password, StringComparison.Ordinal)
+                var Valid = logins.Any(x =>
+                    x.user_name.Equals(userLogins.UserName, StringComparison.Ordinal)
+                   && x.password.Equals(userLogins.Password, StringComparison.Ordinal)
                 );
                 if (Valid)
                 {
-                    var user = logins.FirstOrDefault(x => x.UserName.Equals(userLogins.UserName, StringComparison.OrdinalIgnoreCase));
+                    var user = logins.FirstOrDefault(x => x.user_name.Equals(userLogins.UserName, StringComparison.OrdinalIgnoreCase));
                     Token = JwtHelpers.GenTokenkey(new UserTokens()
                     {
-                        EmailId = user.EmailId,
-                        GuidId = Guid.NewGuid(),
-                        UserName = user.UserName,
-                        Id = user.Id,
+                        Id = user.saler_Id,
+                        UserName = user.user_name,
+                        SalerName = user.Name,
+
                     }, jwtSettings);
                 }
                 else
                 {
-                    return BadRequest( "wrong password");
+                    return BadRequest("wrong password");
                 }
                 return Ok(Token);
             }
@@ -64,11 +63,7 @@ namespace WebApplication.Controllers
         /// Get List of UserAccounts
         /// </summary>
         /// <returns>List Of UserAccounts</returns>
-        [HttpGet]
-        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult GetList()
-        {
-            return Ok(logins);
-        }
+      
     }
+    
 }
